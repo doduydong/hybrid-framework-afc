@@ -1,6 +1,7 @@
 package pageObjects;
 
 import commons.BasePage;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import pageUIs.LoginPageUI;
 
@@ -24,6 +25,9 @@ public class LoginPageObject extends BasePage {
     public void clickLoginButton() {
         waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
-        acceptAlert(driver);
+        try {
+            acceptAlert(driver);
+        } catch (TimeoutException ignored) {
+        }
     }
 }

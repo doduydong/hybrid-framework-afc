@@ -1,6 +1,7 @@
 package pageObjects;
 
 import commons.BasePage;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import pageUIs.RegisterPageUI;
 
@@ -39,6 +40,9 @@ public class RegisterPageObject extends BasePage {
     public void clickRegisterButton() {
         waitForElementClickable(driver, RegisterPageUI.REGISTER_BUTTON);
         clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
-        acceptAlert(driver);
+        try {
+            acceptAlert(driver);
+        } catch (TimeoutException ignored) {
+        }
     }
 }
