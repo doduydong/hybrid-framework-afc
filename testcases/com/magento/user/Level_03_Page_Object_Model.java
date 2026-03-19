@@ -74,6 +74,7 @@ public class Level_03_Page_Object_Model {
         loginPage.sendKeysToPasswordTextBox(password);
 
         loginPage.clickLoginButton();
+        accountDashboardPage = new AccountDashboardPageObject(driver);
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 

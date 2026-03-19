@@ -37,12 +37,13 @@ public class RegisterPageObject extends BasePage {
         sendKeysToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
     }
 
-    public void clickRegisterButton() {
+    public AccountDashboardPageObject clickRegisterButton() {
         waitForElementClickable(driver, RegisterPageUI.REGISTER_BUTTON);
         clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
         try {
             acceptAlert(driver);
         } catch (TimeoutException ignored) {
         }
+        return PageGeneratorManager.getAccountDashboardPage(driver);
     }
 }

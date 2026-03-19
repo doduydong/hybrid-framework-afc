@@ -22,12 +22,13 @@ public class LoginPageObject extends BasePage {
         sendKeysToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
     }
 
-    public void clickLoginButton() {
+    public AccountDashboardPageObject clickLoginButton() {
         waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
         try {
             acceptAlert(driver);
         } catch (TimeoutException ignored) {
         }
+        return PageGeneratorManager.getAccountDashboardPage(driver);
     }
 }

@@ -11,11 +11,13 @@ public class HomePageObject extends BasePage {
         this.driver = driver;
     }
 
-    public void selectRegisterInMyAccountHeaderDropDown() {
+    public RegisterPageObject selectRegisterInMyAccountHeaderDropDown() {
         selectOptionInCustomDropDown(driver, HomePageUI.MY_ACCOUNT_HEADER_DROPDOWN, HomePageUI.MY_ACCOUNT_HEADER_DROPDOWN_OPTIONS, "Register");
+        return PageGeneratorManager.getRegisterPage(driver);
     }
 
-    public void selectLoginInMyAccountHeaderDropDown() {
+    public LoginPageObject selectLoginInMyAccountHeaderDropDown() {
         selectOptionInCustomDropDown(driver, HomePageUI.MY_ACCOUNT_HEADER_DROPDOWN, HomePageUI.MY_ACCOUNT_HEADER_DROPDOWN_OPTIONS, "Log In");
+        return PageGeneratorManager.getLoginPage(driver);
     }
 }

@@ -69,6 +69,7 @@ public class Level_05_Page_Factory extends BaseTest {
         loginPage.sendKeysToPasswordTextBox(password);
 
         loginPage.clickLoginButton();
+        accountDashboardPage = new PageFactoryAccountDashboard(driver);
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 

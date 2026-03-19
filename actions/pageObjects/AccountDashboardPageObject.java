@@ -21,7 +21,8 @@ public class AccountDashboardPageObject extends BasePage {
         return getElementText(driver, AccountDashboardPageUI.WELCOME_MESSAGE);
     }
 
-    public void selectLogoutInMyAccountHeaderDropDown() {
+    public HomePageObject selectLogoutInMyAccountHeaderDropDown() {
         selectOptionInCustomDropDown(driver, AccountDashboardPageUI.MY_ACCOUNT_HEADER_DROPDOWN, AccountDashboardPageUI.MY_ACCOUNT_HEADER_DROPDOWN_OPTIONS, "Log Out");
+        return PageGeneratorManager.getHomePage(driver);
     }
 }
