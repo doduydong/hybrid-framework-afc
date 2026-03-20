@@ -3,6 +3,7 @@ package pageObjects;
 import commons.BasePage;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import pageObjects.myAccount.AccountDashboardPageObject;
 import pageUIs.LoginPageUI;
 
 public class LoginPageObject extends BasePage {

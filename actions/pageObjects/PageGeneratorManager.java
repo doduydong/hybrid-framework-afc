@@ -1,6 +1,9 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import pageObjects.myAccount.AccountDashboardPageObject;
+import pageObjects.myAccount.AccountInformationPageObject;
+import pageObjects.myAccount.AddNewAddressPageObject;
 
 public class PageGeneratorManager {
 
@@ -18,5 +21,13 @@ public class PageGeneratorManager {
 
     public static AccountDashboardPageObject getAccountDashboardPage(WebDriver driver) {
         return new AccountDashboardPageObject(driver);
+    }
+
+    public static AccountInformationPageObject getAccountInformationPage(WebDriver driver) {
+        return new AccountInformationPageObject(driver);
+    }
+
+    public static AddNewAddressPageObject getAddNewAddressPage(WebDriver driver) {
+        return new AddNewAddressPageObject(driver);
     }
 }

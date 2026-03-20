@@ -9,13 +9,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
 import pageObjects.myAccount.AccountDashboardPageObject;
+import pageObjects.myAccount.AccountInformationPageObject;
+import pageObjects.myAccount.AddNewAddressPageObject;
 
-public class Level_06_Page_Generator_Manager extends BaseTest {
+public class Level_07_Page_Navigation extends BaseTest {
     private WebDriver driver;
     private HomePageObject homePage;
     private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
     private AccountDashboardPageObject accountDashboardPage;
+    private AccountInformationPageObject accountInformationPage;
+    private AddNewAddressPageObject addNewAddressPage;
     private String firstName, lastName, fullName, emailAddress, password;
 
     @Parameters("browser")
@@ -47,26 +50,26 @@ public class Level_06_Page_Generator_Manager extends BaseTest {
 
         accountDashboardPage = registerPage.clickRegisterButton();
 
+        Assert.assertTrue(accountDashboardPage.isPageTitleDisplayed());
+
         Assert.assertEquals(accountDashboardPage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
-
-        homePage = accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
     }
 
     @Test
-    public void TC_02_Login() {
-        loginPage = homePage.selectLoginInMyAccountHeaderDropDown();
+    public void TC_02_Switch_My_Account_Pages() {
+        accountInformationPage = accountDashboardPage.sidebar().clickAccountInformationSidebarLink();
 
-        loginPage.sendKeysToEmailTextBox(emailAddress);
+        Assert.assertTrue(accountInformationPage.isPageTitleDisplayed());
 
-        loginPage.sendKeysToPasswordTextBox(password);
+        addNewAddressPage = accountInformationPage.sidebar().clickAddressBookSidebarLink();
 
-        accountDashboardPage = loginPage.clickLoginButton();
+        Assert.assertTrue(addNewAddressPage.isPageTitleDisplayed());
+
+        accountDashboardPage = addNewAddressPage.sidebar().clickAccountDashboardSidebarLink();
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
-
-        homePage = accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
     }
 
     @AfterClass
