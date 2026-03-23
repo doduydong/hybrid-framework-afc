@@ -7,25 +7,27 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
-import pageObjects.myAccount.AccountDashboardPageObject;
-import pageObjects.myAccount.AccountInformationPageObject;
-import pageObjects.myAccount.AddNewAddressPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.UserPageGenerator;
+import pageObjects.user.UserRegisterPageObject;
+import pageObjects.user.myAccount.UserAccountDashboardPageObject;
+import pageObjects.user.myAccount.UserAccountInformationPageObject;
+import pageObjects.user.myAccount.UserAddNewAddressPageObject;
 
 public class Level_07_Page_Navigation extends BaseTest {
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private AccountDashboardPageObject accountDashboardPage;
-    private AccountInformationPageObject accountInformationPage;
-    private AddNewAddressPageObject addNewAddressPage;
+    private UserHomePageObject homePage;
+    private UserRegisterPageObject registerPage;
+    private UserAccountDashboardPageObject accountDashboardPage;
+    private UserAccountInformationPageObject accountInformationPage;
+    private UserAddNewAddressPageObject addNewAddressPage;
     private String firstName, lastName, fullName, emailAddress, password;
 
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
         driver = createWebDriver(browserName);
-        homePage = PageGeneratorManager.getHomePage(driver);
+        homePage = UserPageGenerator.getUserHomePage(driver);
 
         firstName = "Dong";
         lastName = "Do";

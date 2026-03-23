@@ -28,7 +28,7 @@ public class BaseTest {
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.manage().window().maximize();
-        driver.get("https://live.techpanda.org/");
+        driver.get(GlobalConstants.USER_URL);
         return driver;
     }
 

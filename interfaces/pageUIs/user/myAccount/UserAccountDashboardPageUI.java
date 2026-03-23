@@ -1,6 +1,6 @@
-package pageUIs.myAccount;
+package pageUIs.user.myAccount;
 
-public class AccountDashboardPageUI {
+public class UserAccountDashboardPageUI {
 
     public static final String REGISTER_SUCCESS_MESSAGE = "//li[@class='success-msg']//span";
     public static final String WELCOME_MESSAGE = "//div[@class='welcome-msg']//strong";

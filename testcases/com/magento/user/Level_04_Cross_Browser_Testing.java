@@ -7,24 +7,24 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.myAccount.AccountDashboardPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.user.myAccount.UserAccountDashboardPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserRegisterPageObject;
 
 public class Level_04_Cross_Browser_Testing extends BaseTest {
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
-    private AccountDashboardPageObject accountDashboardPage;
+    private UserHomePageObject homePage;
+    private UserRegisterPageObject registerPage;
+    private UserLoginPageObject loginPage;
+    private UserAccountDashboardPageObject accountDashboardPage;
     private String firstName, lastName, fullName, emailAddress, password;
 
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
         driver = createWebDriver(browserName);
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePageObject(driver);
 
         firstName = "Dong";
         lastName = "Do";
@@ -36,7 +36,7 @@ public class Level_04_Cross_Browser_Testing extends BaseTest {
     @Test
     public void TC_01_Register() {
         homePage.selectRegisterInMyAccountHeaderDropDown();
-        registerPage = new RegisterPageObject(driver);
+        registerPage = new UserRegisterPageObject(driver);
 
         registerPage.sendKeysToFirstNameTextBox(firstName);
 
@@ -49,32 +49,32 @@ public class Level_04_Cross_Browser_Testing extends BaseTest {
         registerPage.sendKeysToConfirmPasswordTextBox(password);
 
         registerPage.clickRegisterButton();
-        accountDashboardPage = new AccountDashboardPageObject(driver);
+        accountDashboardPage = new UserAccountDashboardPageObject(driver);
 
         Assert.assertEquals(accountDashboardPage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
         accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePageObject(driver);
     }
 
     @Test
     public void TC_02_Login() {
         homePage.selectLoginInMyAccountHeaderDropDown();
-        loginPage = new LoginPageObject(driver);
+        loginPage = new UserLoginPageObject(driver);
 
         loginPage.sendKeysToEmailTextBox(emailAddress);
 
         loginPage.sendKeysToPasswordTextBox(password);
 
         loginPage.clickLoginButton();
-        accountDashboardPage = new AccountDashboardPageObject(driver);
+        accountDashboardPage = new UserAccountDashboardPageObject(driver);
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
         accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePageObject(driver);
     }
 
     @AfterClass

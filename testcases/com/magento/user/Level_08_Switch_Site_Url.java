@@ -1,0 +1,97 @@
+package com.magento.user;
+
+import commons.BaseTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import pageObjects.admin.AdminLoginPageObject;
+import pageObjects.admin.AdminManageCustomersPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.UserPageGenerator;
+import pageObjects.user.UserRegisterPageObject;
+import pageObjects.user.myAccount.UserAccountDashboardPageObject;
+
+public class Level_08_Switch_Site_Url extends BaseTest {
+    private WebDriver driver;
+    private UserHomePageObject userHomePage;
+    private UserRegisterPageObject userRegisterPage;
+    private UserLoginPageObject userLoginPage;
+    private UserAccountDashboardPageObject userAccountDashboardPage;
+    private AdminLoginPageObject adminLoginPage;
+    private AdminManageCustomersPageObject adminManageCustomersPage;
+    private String firstName, lastName, fullName, emailAddress, password;
+
+    @Parameters("browser")
+    @BeforeClass
+    public void beforeClass(String browserName) {
+        driver = createWebDriver(browserName);
+        userHomePage = UserPageGenerator.getUserHomePage(driver);
+
+        firstName = "Dong";
+        lastName = "Do";
+        fullName = firstName + " " + lastName;
+        emailAddress = "dong.afc" + getRandomNumber() + "@gmail.com";
+        password = "SeJava4@";
+    }
+
+    @Test
+    public void TC_01_User_Site_To_Admin_Site() {
+        userRegisterPage = userHomePage.selectRegisterInMyAccountHeaderDropDown();
+
+        userRegisterPage.sendKeysToFirstNameTextBox(firstName);
+
+        userRegisterPage.sendKeysToLastNameTextBox(lastName);
+
+        userRegisterPage.sendKeysToEmailTextBox(emailAddress);
+
+        userRegisterPage.sendKeysToPasswordTextBox(password);
+
+        userRegisterPage.sendKeysToConfirmPasswordTextBox(password);
+
+        userAccountDashboardPage = userRegisterPage.clickRegisterButton();
+
+        Assert.assertEquals(userAccountDashboardPage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
+
+        Assert.assertEquals(userAccountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
+
+        userHomePage = userAccountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+
+        adminLoginPage = userHomePage.openAdminSite(driver);
+
+        adminLoginPage.sendKeysToUserNameTextBox("user01");
+
+        adminLoginPage.sendKeysToPasswordTextBox("guru99com");
+
+        adminManageCustomersPage = adminLoginPage.clickLogInButton();
+
+        adminManageCustomersPage.closePopup();
+
+        adminLoginPage = adminManageCustomersPage.clickLogOutLink();
+    }
+
+    @Test
+    public void TC_02_Admin_Site_To_User_Site() {
+        userHomePage = adminLoginPage.openUserSite(driver);
+
+        userLoginPage = userHomePage.selectLoginInMyAccountHeaderDropDown();
+
+        userLoginPage.sendKeysToEmailTextBox(emailAddress);
+
+        userLoginPage.sendKeysToPasswordTextBox(password);
+
+        userAccountDashboardPage = userLoginPage.clickLoginButton();
+
+        Assert.assertEquals(userAccountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
+
+        userHomePage = userAccountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.quit();
+    }
+}

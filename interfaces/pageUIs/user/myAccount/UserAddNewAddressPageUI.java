@@ -1,6 +1,6 @@
-package pageUIs.myAccount;
+package pageUIs.user.myAccount;
 
-public class AddNewAddressPageUI {
+public class UserAddNewAddressPageUI {
 
     public static final String PAGE_TITLE = "//div[@class='page-title']/h1[text()='Add New Address']";
 }

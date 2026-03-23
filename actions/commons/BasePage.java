@@ -5,6 +5,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.AdminPageGenerator;
+import pageObjects.UserPageGenerator;
+import pageObjects.admin.AdminLoginPageObject;
+import pageObjects.user.UserHomePageObject;
 
 import java.time.Duration;
 import java.util.List;
@@ -296,12 +300,14 @@ public class BasePage {
     }
 
     // Custom methods
-    protected void sleepForSeconds(long seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    public AdminLoginPageObject openAdminSite(WebDriver driver) {
+        driver.get(GlobalConstants.ADMIN_URL);
+        return AdminPageGenerator.getAdminLoginPage(driver);
+    }
+
+    public UserHomePageObject openUserSite(WebDriver driver) {
+        driver.get(GlobalConstants.USER_URL);
+        return UserPageGenerator.getUserHomePage(driver);
     }
 
     protected void selectOptionInCustomDropDown(WebDriver driver, String dropdownXPath, String allOptionsXPath, String expectedValue) {
@@ -316,6 +322,14 @@ public class BasePage {
                 sleepForSeconds(oneSecond);
                 break;
             }
+        }
+    }
+
+    protected void sleepForSeconds(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
