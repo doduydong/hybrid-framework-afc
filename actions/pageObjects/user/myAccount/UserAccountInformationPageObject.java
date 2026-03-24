@@ -2,7 +2,7 @@ package pageObjects.user.myAccount;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageComponents.user.MyAccountSidebar;
+import pageComponents.user.UserMyAccountSidebar;
 import pageUIs.user.myAccount.UserAccountInformationPageUI;
 
 public class UserAccountInformationPageObject extends BasePage {
@@ -12,8 +12,8 @@ public class UserAccountInformationPageObject extends BasePage {
         this.driver = driver;
     }
 
-    public MyAccountSidebar sidebar() {
-        return new MyAccountSidebar(driver);
+    public UserMyAccountSidebar sidebar() {
+        return new UserMyAccountSidebar(driver);
     }
 
     public boolean isPageTitleDisplayed() {

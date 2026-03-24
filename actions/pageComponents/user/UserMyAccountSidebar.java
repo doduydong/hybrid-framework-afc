@@ -6,29 +6,30 @@ import pageObjects.UserPageGenerator;
 import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 import pageObjects.user.myAccount.UserAccountInformationPageObject;
 import pageObjects.user.myAccount.UserAddNewAddressPageObject;
+import pageUIs.user.components.UserMyAccountSidebarUI;
 
-public class MyAccountSidebar extends BasePage {
+public class UserMyAccountSidebar extends BasePage {
     private WebDriver driver;
 
-    public MyAccountSidebar(WebDriver driver) {
+    public UserMyAccountSidebar(WebDriver driver) {
         this.driver = driver;
     }
 
     public UserAccountDashboardPageObject clickAccountDashboardSidebarLink() {
-        waitForElementClickable(driver, "//div[@class='block-content']//a[text()='Account Dashboard']");
-        clickToElement(driver, "//div[@class='block-content']//a[text()='Account Dashboard']");
+        waitForElementClickable(driver, UserMyAccountSidebarUI.MY_ACCOUNT_SIDEBAR_LINK_BY_TEXT, "Account Dashboard");
+        clickToElement(driver, UserMyAccountSidebarUI.MY_ACCOUNT_SIDEBAR_LINK_BY_TEXT, "Account Dashboard");
         return UserPageGenerator.getUserAccountDashboardPage(driver);
     }
 
     public UserAccountInformationPageObject clickAccountInformationSidebarLink() {
-        waitForElementClickable(driver, "//div[@class='block-content']//a[text()='Account Information']");
-        clickToElement(driver, "//div[@class='block-content']//a[text()='Account Information']");
+        waitForElementClickable(driver, UserMyAccountSidebarUI.MY_ACCOUNT_SIDEBAR_LINK_BY_TEXT, "Account Information");
+        clickToElement(driver, UserMyAccountSidebarUI.MY_ACCOUNT_SIDEBAR_LINK_BY_TEXT, "Account Information");
         return UserPageGenerator.getUserAccountInformationPage(driver);
     }
 
     public UserAddNewAddressPageObject clickAddressBookSidebarLink() {
-        waitForElementClickable(driver, "//div[@class='block-content']//a[text()='Address Book']");
-        clickToElement(driver, "//div[@class='block-content']//a[text()='Address Book']");
+        waitForElementClickable(driver, UserMyAccountSidebarUI.MY_ACCOUNT_SIDEBAR_LINK_BY_TEXT, "Address Book");
+        clickToElement(driver, UserMyAccountSidebarUI.MY_ACCOUNT_SIDEBAR_LINK_BY_TEXT, "Address Book");
         return UserPageGenerator.getUserAddNewAddressPage(driver);
     }
 }
