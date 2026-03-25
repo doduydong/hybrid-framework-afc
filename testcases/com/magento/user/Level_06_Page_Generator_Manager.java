@@ -1,15 +1,16 @@
 package com.magento.user;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.UserPageGenerator;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserLoginPageObject;
-import pageObjects.UserPageGenerator;
 import pageObjects.user.UserRegisterPageObject;
 import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 
@@ -24,7 +25,7 @@ public class Level_06_Page_Generator_Manager extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
-        driver = createWebDriver(browserName);
+        driver = createWebDriver(browserName, GlobalConstants.USER_URL);
         homePage = UserPageGenerator.getUserHomePage(driver);
 
         firstName = "Dong";
@@ -36,7 +37,7 @@ public class Level_06_Page_Generator_Manager extends BaseTest {
 
     @Test
     public void TC_01_Register() {
-        registerPage = homePage.selectRegisterInMyAccountHeaderDropDown();
+        registerPage = homePage.headerSide().selectRegisterInMyAccountHeaderDropDown();
 
         registerPage.sendKeysToFirstNameTextBox(firstName);
 
@@ -54,12 +55,12 @@ public class Level_06_Page_Generator_Manager extends BaseTest {
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        homePage = accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        homePage = accountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
     }
 
     @Test
     public void TC_02_Login() {
-        loginPage = homePage.selectLoginInMyAccountHeaderDropDown();
+        loginPage = homePage.headerSide().selectLoginInMyAccountHeaderDropDown();
 
         loginPage.sendKeysToEmailTextBox(emailAddress);
 
@@ -69,7 +70,7 @@ public class Level_06_Page_Generator_Manager extends BaseTest {
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        homePage = accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        homePage = accountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
     }
 
     @AfterClass

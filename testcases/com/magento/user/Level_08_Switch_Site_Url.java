@@ -1,17 +1,18 @@
 package com.magento.user;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.UserPageGenerator;
 import pageObjects.admin.AdminLoginPageObject;
 import pageObjects.admin.AdminManageCustomersPageObject;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserLoginPageObject;
-import pageObjects.UserPageGenerator;
 import pageObjects.user.UserRegisterPageObject;
 import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 
@@ -28,7 +29,7 @@ public class Level_08_Switch_Site_Url extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
-        driver = createWebDriver(browserName);
+        driver = createWebDriver(browserName, GlobalConstants.USER_URL);
         userHomePage = UserPageGenerator.getUserHomePage(driver);
 
         firstName = "Dong";
@@ -40,7 +41,7 @@ public class Level_08_Switch_Site_Url extends BaseTest {
 
     @Test
     public void TC_01_User_Site_To_Admin_Site() {
-        userRegisterPage = userHomePage.selectRegisterInMyAccountHeaderDropDown();
+        userRegisterPage = userHomePage.headerSide().selectRegisterInMyAccountHeaderDropDown();
 
         userRegisterPage.sendKeysToFirstNameTextBox(firstName);
 
@@ -58,7 +59,7 @@ public class Level_08_Switch_Site_Url extends BaseTest {
 
         Assert.assertEquals(userAccountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        userHomePage = userAccountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        userHomePage = userAccountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
 
         adminLoginPage = userHomePage.openAdminSite(driver);
 
@@ -77,7 +78,7 @@ public class Level_08_Switch_Site_Url extends BaseTest {
     public void TC_02_Admin_Site_To_User_Site() {
         userHomePage = adminLoginPage.openUserSite(driver);
 
-        userLoginPage = userHomePage.selectLoginInMyAccountHeaderDropDown();
+        userLoginPage = userHomePage.headerSide().selectLoginInMyAccountHeaderDropDown();
 
         userLoginPage.sendKeysToEmailTextBox(emailAddress);
 
@@ -87,7 +88,7 @@ public class Level_08_Switch_Site_Url extends BaseTest {
 
         Assert.assertEquals(userAccountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        userHomePage = userAccountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        userHomePage = userAccountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
     }
 
     @AfterClass

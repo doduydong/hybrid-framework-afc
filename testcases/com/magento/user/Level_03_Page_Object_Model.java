@@ -6,10 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserLoginPageObject;
 import pageObjects.user.UserRegisterPageObject;
+import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 
 import java.time.Duration;
 import java.util.Random;
@@ -40,7 +40,7 @@ public class Level_03_Page_Object_Model {
 
     @Test
     public void TC_01_Register() {
-        homePage.selectRegisterInMyAccountHeaderDropDown();
+        homePage.headerSide().selectRegisterInMyAccountHeaderDropDown();
         registerPage = new UserRegisterPageObject(driver);
 
         registerPage.sendKeysToFirstNameTextBox(firstName);
@@ -60,13 +60,13 @@ public class Level_03_Page_Object_Model {
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        accountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
         homePage = new UserHomePageObject(driver);
     }
 
     @Test
     public void TC_02_Login() {
-        homePage.selectLoginInMyAccountHeaderDropDown();
+        homePage.headerSide().selectLoginInMyAccountHeaderDropDown();
         loginPage = new UserLoginPageObject(driver);
 
         loginPage.sendKeysToEmailTextBox(emailAddress);
@@ -78,7 +78,7 @@ public class Level_03_Page_Object_Model {
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        accountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
         homePage = new UserHomePageObject(driver);
     }
 

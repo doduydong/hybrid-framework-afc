@@ -1,6 +1,7 @@
 package com.magento.user;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -23,7 +24,7 @@ public class Level_05_Page_Factory extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
-        driver = createWebDriver(browserName);
+        driver = createWebDriver(browserName, GlobalConstants.USER_URL);
         homePage = new PageFactoryHome(driver);
 
         firstName = "Dong";

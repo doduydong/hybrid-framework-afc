@@ -1,16 +1,17 @@
 package com.magento.user;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserLoginPageObject;
 import pageObjects.user.UserRegisterPageObject;
+import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 
 public class Level_04_Cross_Browser_Testing extends BaseTest {
     private WebDriver driver;
@@ -23,7 +24,7 @@ public class Level_04_Cross_Browser_Testing extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
-        driver = createWebDriver(browserName);
+        driver = createWebDriver(browserName, GlobalConstants.USER_URL);
         homePage = new UserHomePageObject(driver);
 
         firstName = "Dong";
@@ -35,7 +36,7 @@ public class Level_04_Cross_Browser_Testing extends BaseTest {
 
     @Test
     public void TC_01_Register() {
-        homePage.selectRegisterInMyAccountHeaderDropDown();
+        homePage.headerSide().selectRegisterInMyAccountHeaderDropDown();
         registerPage = new UserRegisterPageObject(driver);
 
         registerPage.sendKeysToFirstNameTextBox(firstName);
@@ -55,13 +56,13 @@ public class Level_04_Cross_Browser_Testing extends BaseTest {
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        accountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
         homePage = new UserHomePageObject(driver);
     }
 
     @Test
     public void TC_02_Login() {
-        homePage.selectLoginInMyAccountHeaderDropDown();
+        homePage.headerSide().selectLoginInMyAccountHeaderDropDown();
         loginPage = new UserLoginPageObject(driver);
 
         loginPage.sendKeysToEmailTextBox(emailAddress);
@@ -73,7 +74,7 @@ public class Level_04_Cross_Browser_Testing extends BaseTest {
 
         Assert.assertEquals(accountDashboardPage.getWelcomeMessage(), "Hello, " + fullName + "!");
 
-        accountDashboardPage.selectLogoutInMyAccountHeaderDropDown();
+        accountDashboardPage.headerSide().selectLogoutInMyAccountHeaderDropDown();
         homePage = new UserHomePageObject(driver);
     }
 

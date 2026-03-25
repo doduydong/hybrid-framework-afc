@@ -1,14 +1,15 @@
 package com.magento.user;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.user.UserHomePageObject;
 import pageObjects.UserPageGenerator;
+import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserRegisterPageObject;
 import pageObjects.user.myAccount.UserAccountDashboardPageObject;
 import pageObjects.user.myAccount.UserAccountInformationPageObject;
@@ -26,7 +27,7 @@ public class Level_07_Page_Navigation extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
-        driver = createWebDriver(browserName);
+        driver = createWebDriver(browserName, GlobalConstants.USER_URL);
         homePage = UserPageGenerator.getUserHomePage(driver);
 
         firstName = "Dong";
@@ -38,7 +39,7 @@ public class Level_07_Page_Navigation extends BaseTest {
 
     @Test
     public void TC_01_Register() {
-        registerPage = homePage.selectRegisterInMyAccountHeaderDropDown();
+        registerPage = homePage.headerSide().selectRegisterInMyAccountHeaderDropDown();
 
         registerPage.sendKeysToFirstNameTextBox(firstName);
 

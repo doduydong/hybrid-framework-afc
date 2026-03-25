@@ -11,7 +11,7 @@ import java.util.Random;
 public class BaseTest {
     private WebDriver driver;
 
-    protected WebDriver createWebDriver(String browserName) {
+    protected WebDriver createWebDriver(String browserName, String url) {
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
         switch (browser) {
             case FIREFOX:
@@ -28,7 +28,7 @@ public class BaseTest {
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.manage().window().maximize();
-        driver.get(GlobalConstants.USER_URL);
+        driver.get(url);
         return driver;
     }
 

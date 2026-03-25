@@ -2,6 +2,7 @@ package pageObjects.user.myAccount;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageComponents.user.UserHeaderSide;
 import pageComponents.user.UserMyAccountSidebar;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.UserPageGenerator;
@@ -12,6 +13,10 @@ public class UserAccountDashboardPageObject extends BasePage {
 
     public UserAccountDashboardPageObject(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public UserHeaderSide headerSide() {
+        return new UserHeaderSide(driver);
     }
 
     public UserMyAccountSidebar sidebar() {
@@ -26,11 +31,6 @@ public class UserAccountDashboardPageObject extends BasePage {
     public String getWelcomeMessage() {
         waitForElementVisible(driver, UserAccountDashboardPageUI.WELCOME_MESSAGE);
         return getElementText(driver, UserAccountDashboardPageUI.WELCOME_MESSAGE);
-    }
-
-    public UserHomePageObject selectLogoutInMyAccountHeaderDropDown() {
-        selectOptionInCustomDropDown(driver, UserAccountDashboardPageUI.MY_ACCOUNT_HEADER_DROPDOWN, UserAccountDashboardPageUI.MY_ACCOUNT_HEADER_DROPDOWN_OPTIONS, "Log Out");
-        return UserPageGenerator.getUserHomePage(driver);
     }
 
     public boolean isPageTitleDisplayed() {
