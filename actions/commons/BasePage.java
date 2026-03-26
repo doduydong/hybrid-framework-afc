@@ -5,10 +5,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.AdminPageGenerator;
-import pageObjects.UserPageGenerator;
-import pageObjects.admin.AdminLoginPageObject;
-import pageObjects.user.UserHomePageObject;
+import pageObjects.magento.AdminPageGenerator;
+import pageObjects.magento.UserPageGenerator;
+import pageObjects.magento.admin.AdminLoginPageObject;
+import pageObjects.magento.user.UserHomePageObject;
 
 import java.time.Duration;
 import java.util.List;

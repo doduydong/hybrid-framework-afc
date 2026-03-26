@@ -6,10 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.user.UserHomePageObject;
-import pageObjects.user.UserLoginPageObject;
-import pageObjects.user.UserRegisterPageObject;
-import pageObjects.user.myAccount.UserAccountDashboardPageObject;
+import pageObjects.magento.user.UserHomePageObject;
+import pageObjects.magento.user.UserLoginPageObject;
+import pageObjects.magento.user.UserRegisterPageObject;
+import pageObjects.magento.user.myAccount.UserAccountDashboardPageObject;
 
 import java.time.Duration;
 import java.util.Random;

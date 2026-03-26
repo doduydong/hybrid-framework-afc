@@ -2,11 +2,11 @@ package pageComponents.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageObjects.UserPageGenerator;
-import pageObjects.user.UserHomePageObject;
-import pageObjects.user.UserLoginPageObject;
-import pageObjects.user.UserRegisterPageObject;
-import pageUIs.user.components.UserHeaderSideUI;
+import pageObjects.magento.UserPageGenerator;
+import pageObjects.magento.user.UserHomePageObject;
+import pageObjects.magento.user.UserLoginPageObject;
+import pageObjects.magento.user.UserRegisterPageObject;
+import pageUIs.magento.user.components.UserHeaderSideUI;
 
 public class UserHeaderSide extends BasePage {
     private WebDriver driver;

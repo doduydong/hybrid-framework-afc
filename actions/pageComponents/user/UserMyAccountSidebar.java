@@ -2,11 +2,11 @@ package pageComponents.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageObjects.UserPageGenerator;
-import pageObjects.user.myAccount.UserAccountDashboardPageObject;
-import pageObjects.user.myAccount.UserAccountInformationPageObject;
-import pageObjects.user.myAccount.UserAddNewAddressPageObject;
-import pageUIs.user.components.UserMyAccountSidebarUI;
+import pageObjects.magento.UserPageGenerator;
+import pageObjects.magento.user.myAccount.UserAccountDashboardPageObject;
+import pageObjects.magento.user.myAccount.UserAccountInformationPageObject;
+import pageObjects.magento.user.myAccount.UserAddNewAddressPageObject;
+import pageUIs.magento.user.components.UserMyAccountSidebarUI;
 
 public class UserMyAccountSidebar extends BasePage {
     private WebDriver driver;

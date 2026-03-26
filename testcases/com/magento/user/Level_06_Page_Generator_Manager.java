@@ -8,11 +8,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.UserPageGenerator;
-import pageObjects.user.UserHomePageObject;
-import pageObjects.user.UserLoginPageObject;
-import pageObjects.user.UserRegisterPageObject;
-import pageObjects.user.myAccount.UserAccountDashboardPageObject;
+import pageObjects.magento.UserPageGenerator;
+import pageObjects.magento.user.UserHomePageObject;
+import pageObjects.magento.user.UserLoginPageObject;
+import pageObjects.magento.user.UserRegisterPageObject;
+import pageObjects.magento.user.myAccount.UserAccountDashboardPageObject;
 
 public class Level_06_Page_Generator_Manager extends BaseTest {
     private WebDriver driver;

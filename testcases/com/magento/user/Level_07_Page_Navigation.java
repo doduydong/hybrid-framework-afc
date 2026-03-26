@@ -8,12 +8,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.UserPageGenerator;
-import pageObjects.user.UserHomePageObject;
-import pageObjects.user.UserRegisterPageObject;
-import pageObjects.user.myAccount.UserAccountDashboardPageObject;
-import pageObjects.user.myAccount.UserAccountInformationPageObject;
-import pageObjects.user.myAccount.UserAddNewAddressPageObject;
+import pageObjects.magento.UserPageGenerator;
+import pageObjects.magento.user.UserHomePageObject;
+import pageObjects.magento.user.UserRegisterPageObject;
+import pageObjects.magento.user.myAccount.UserAccountDashboardPageObject;
+import pageObjects.magento.user.myAccount.UserAccountInformationPageObject;
+import pageObjects.magento.user.myAccount.UserAddNewAddressPageObject;
 
 public class Level_07_Page_Navigation extends BaseTest {
     private WebDriver driver;
