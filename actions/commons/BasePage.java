@@ -484,6 +484,16 @@ public class BasePage {
         }
     }
 
+    protected void uploadFiles(WebDriver driver, String... filesToUpload) {
+        String uploadFilesFolderPath = GlobalConstants.UPLOAD_FILES_FOLDER_PATH;
+        String fullFilePath = "";
+        for (String file : filesToUpload) {
+            fullFilePath = fullFilePath + uploadFilesFolderPath + file + "\n";
+        }
+        fullFilePath = fullFilePath.trim();
+        getElement(driver, "//input[@type='file']").sendKeys(fullFilePath);
+    }
+
     // Constants
     private final long longTimeout = GlobalConstants.LONG_TIMEOUT;
     private final long twoSeconds = GlobalConstants.TWO_SECONDS;
