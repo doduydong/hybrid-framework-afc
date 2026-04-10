@@ -5,7 +5,7 @@
     <test name="FirefoxTest">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.magento.user.Level_11_Custom_Soft_Assert"/>
+            <class name="com.magento.user.Level_12_Log4j2"/>
         </classes>
     </test>
 

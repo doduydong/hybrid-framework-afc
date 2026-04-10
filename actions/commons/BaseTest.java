@@ -1,5 +1,7 @@
 package commons;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,6 +14,11 @@ import java.util.Random;
 
 public class BaseTest {
     private WebDriver driver;
+    protected final Logger log;
+
+    public BaseTest() {
+        log = LogManager.getLogger(getClass());
+    }
 
     protected WebDriver createWebDriver(String browserName, String url) {
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
@@ -38,39 +45,42 @@ public class BaseTest {
         return new Random().nextInt(10000);
     }
 
-    protected boolean verifyTrue(boolean condition) {
+    protected void verifyTrue(boolean condition) {
         boolean verify = true;
         try {
             Assert.assertTrue(condition);
+            log.info("---------------------- PASSED ----------------------");
         } catch (Throwable e) {
             verify = false;
+            log.info("---------------------- FAILED ----------------------");
             VerificationFailureStore.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
-        return verify;
     }
 
-    protected boolean verifyFalse(boolean condition) {
+    protected void verifyFalse(boolean condition) {
         boolean verify = true;
         try {
             Assert.assertFalse(condition);
+            log.info("---------------------- PASSED ----------------------");
         } catch (Throwable e) {
             verify = false;
+            log.info("---------------------- FAILED ----------------------");
             VerificationFailureStore.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
-        return verify;
     }
 
-    protected boolean verifyEqual(Object actual, Object expected) {
+    protected void verifyEqual(Object actual, Object expected) {
         boolean verify = true;
         try {
             Assert.assertEquals(actual, expected);
+            log.info("---------------------- PASSED ----------------------");
         } catch (Throwable e) {
             verify = false;
+            log.info("---------------------- FAILED ----------------------");
             VerificationFailureStore.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
-        return verify;
     }
 }
