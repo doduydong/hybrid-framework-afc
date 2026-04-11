@@ -20,6 +20,10 @@ public class BaseTest {
         log = LogManager.getLogger(getClass());
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     protected WebDriver createWebDriver(String browserName, String url) {
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
         switch (browser) {

@@ -33,3 +33,6 @@ bin/
 
 ### Log4j2 ###
 logsOfLog4j2/
+
+### ReportNG ###
+test-output/
