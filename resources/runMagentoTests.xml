@@ -3,15 +3,13 @@
 <suite name="Magento Automation Test Suite">
 
     <listeners>
-        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-        <listener class-name="reportsConfig.ReportNGListener"/>
+        <listener class-name="reportsConfig.ExtentReportsListener"/>
     </listeners>
 
     <test name="FirefoxTest">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.magento.user.Level_13_ReportNG"/>
+            <class name="com.magento.user.Level_14_ExtentReports"/>
         </classes>
     </test>
 

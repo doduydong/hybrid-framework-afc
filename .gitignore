@@ -36,3 +36,6 @@ logsOfLog4j2/
 
 ### ReportNG ###
 test-output/
+
+### ExtentReports ###
+extentReports-output/
