@@ -1,13 +1,18 @@
 package commons;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import reportsConfig.ExtentTestManager;
 
 import java.time.Duration;
 import java.util.Random;
@@ -57,6 +62,16 @@ public class BaseTest {
         } catch (Throwable e) {
             verify = false;
             log.info("---------------------- FAILED ----------------------");
+
+            if (getDriver() != null) {
+                String base64 = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BASE64);
+
+                ExtentTestManager.getTest().fail(e, // 👉 dùng exception luôn (gọn nhất)
+                        MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
+            } else {
+                ExtentTestManager.getTest().fail(e);
+            }
+
             VerificationFailureStore.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
@@ -70,6 +85,15 @@ public class BaseTest {
         } catch (Throwable e) {
             verify = false;
             log.info("---------------------- FAILED ----------------------");
+
+            if (getDriver() != null) {
+                String base64 = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BASE64);
+
+                ExtentTestManager.getTest().fail(e, MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
+            } else {
+                ExtentTestManager.getTest().fail(e);
+            }
+
             VerificationFailureStore.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
@@ -83,6 +107,15 @@ public class BaseTest {
         } catch (Throwable e) {
             verify = false;
             log.info("---------------------- FAILED ----------------------");
+
+            if (getDriver() != null) {
+                String base64 = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BASE64);
+
+                ExtentTestManager.getTest().fail(e, MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
+            } else {
+                ExtentTestManager.getTest().fail(e);
+            }
+
             VerificationFailureStore.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }

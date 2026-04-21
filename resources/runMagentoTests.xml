@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Magento Automation Test Suite">
+<suite parallel="tests" name="Magento Automation Test Suite">
 
     <listeners>
-        <listener class-name="reportsConfig.ExtentReportsListener"/>
+        <listener class-name="reportsConfig.ExtentListener"/>
     </listeners>
 
-    <test name="FirefoxTest">
+    <test name="Firefox1">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.magento.user.Level_14_ExtentReports"/>
+            <class name="com.magento.user.Level_14_ExtentReports_Assert"/>
+        </classes>
+    </test>
+
+    <test name="Firefox2">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.magento.user.Level_14_ExtentReports_Verify"/>
         </classes>
     </test>
 
